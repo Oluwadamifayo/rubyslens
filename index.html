@@ -162,6 +162,71 @@
             transform: translateY(0);
         }
         
+        /* Booking Form Styles */
+        .form-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px 25px;
+            background: #121212;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #222222;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: #c0392b;
+        }
+        
         /* Action Matrix Contact Cards */
         .contact-box {
             background-color: #121212;
@@ -277,6 +342,7 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#works">Gallery</a>
+            <a href="#contact">Book Session</a>
         </div>
     </header>
 
@@ -307,6 +373,29 @@
         
     </section>
 
+    <div id="contact" class="section-title reveal-item">Let's Create Together</div>
+    <section class="form-section reveal-item">
+        <form action="https://formspree.io/f/your_formspree_id_here" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="session">Session Type</label>
+                <input type="text" id="session" name="session" required placeholder="e.g., Outdoor Session, General Portrait, Video Production">
+            </div>
+            <div class="form-group">
+                <label for="message">Project Brief</label>
+                <textarea id="message" name="message" required placeholder="Tell us about your creative concept details..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Inquiry</button>
+        </form>
+    </section>
+
     <section style="padding: 0 20px;" class="reveal-item">
         <div class="contact-box">
             <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px;">Direct Bookings</h3>
@@ -333,7 +422,6 @@
         document.addEventListener("DOMContentLoaded", function () {
             const scrollItems = document.querySelectorAll(".reveal-item");
             
-            // Continuous reveal engine config
             const observerOptions = {
                 root: null,
                 rootMargin: "0px 0px -80px 0px",
