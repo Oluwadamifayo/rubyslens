@@ -13,6 +13,10 @@
             padding: 0;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             background-color: #0a0a0a;
             color: #ffffff;
@@ -144,12 +148,12 @@
             filter: brightness(0.85);
         }
 
-        /* Scroll Reveal Engine Configuration */
+        /* Continuous Layout Reveal System Settings */
         .reveal-item {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform, opacity;
         }
         
@@ -298,7 +302,7 @@
         </div>
         
         <div class="work-card reveal-item modal-trigger">
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop" alt="Event Production">
+            <img src="https://i.ibb.co/TxrgGCcB/IMG-20260627-WA0017.jpg" alt="Ruby's Lens Portfolio Work">
         </div>
         
     </section>
@@ -328,10 +332,12 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const scrollItems = document.querySelectorAll(".reveal-item");
+            
+            // Continuous reveal engine config
             const observerOptions = {
                 root: null,
-                rootMargin: "0px 0px -50px 0px",
-                threshold: 0.1
+                rootMargin: "0px 0px -80px 0px",
+                threshold: 0.15
             };
 
             const revealObserver = new IntersectionObserver(function (entries) {
@@ -346,6 +352,7 @@
                 revealObserver.observe(item);
             });
 
+            // Lightbox Modal System
             const modalOverlay = document.getElementById("galleryModal");
             const modalImg = document.getElementById("modalImg");
             const modalClose = document.getElementById("modalClose");
