@@ -148,12 +148,14 @@
             filter: brightness(0.85);
         }
 
-        /* More Also Showcase Layout */
+        /* More Also Showcase Horizontal Layout */
         .more-also-container {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto 50px auto;
             padding: 0 20px;
-            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
         
         .more-also-frame {
@@ -171,8 +173,7 @@
         
         .more-also-frame img {
             width: 100%;
-            height: auto;
-            max-height: 550px;
+            height: 450px;
             object-fit: cover;
             display: block;
         }
@@ -409,9 +410,15 @@
 
     <div id="more-also" class="section-title reveal-item">More Also</div>
     <section class="more-also-container reveal-item">
+        
         <div class="more-also-frame modal-trigger">
-            <img src="https://i.ibb.co/PZsKKng3/IMG-20260627-WA0012.jpg" alt="Ruby's Lens Featured Spotlight Piece">
+            <img src="https://i.ibb.co/PZsKKng3/IMG-20260627-WA0012.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
+
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/7J2MhhD0/IMG-20260627-WA0018-1.jpg" alt="Ruby's Lens Spotlight Element">
+        </div>
+        
     </section>
 
     <div id="contact" class="section-title reveal-item">Let's Create Together</div>
