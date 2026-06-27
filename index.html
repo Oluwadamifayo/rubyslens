@@ -156,12 +156,11 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
-            overflow-x: auto; /* Enables touch swiping and scrollbars */
-            scroll-snap-type: x mandatory; /* Makes cards snap nicely on phones */
-            -webkit-overflow-scrolling: touch; /* Smooth iOS kinetic momentum scrolling */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
         
-        /* Custom subtle scrollbar layout for desktop browsers */
         .more-also-container::-webkit-scrollbar {
             height: 6px;
         }
@@ -178,7 +177,7 @@
         }
         
         .more-also-frame {
-            flex: 0 0 280px; /* Forces cards to stay exactly 280px wide without shrinking */
+            flex: 0 0 280px;
             scroll-snap-align: start;
             border-radius: 12px;
             overflow: hidden;
@@ -442,6 +441,10 @@
 
         <div class="more-also-frame modal-trigger">
             <img src="https://i.ibb.co/cXpSC72b/IMG-20260627-WA0006.jpg" alt="Ruby's Lens Spotlight Element">
+        </div>
+
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/DHk4GKc1/IMG-20260627-WA0019-1.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
         
     </section>
