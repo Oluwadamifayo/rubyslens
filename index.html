@@ -147,7 +147,7 @@
             filter: brightness(0.85);
         }
 
-        /* RESTORED: Horizontal Scroll Row for More Also */
+        /* Horizontal Scroll Row for More Also */
         .more-also-container {
             max-width: 1100px;
             margin: 0 auto 50px auto;
@@ -183,6 +183,7 @@
             border: 1px solid #1a1a1a;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             cursor: pointer;
+            position: relative;
             transition: transform 0.3s ease;
         }
         
@@ -195,6 +196,162 @@
             height: 380px;
             object-fit: cover;
             display: block;
+        }
+
+        /* Hover Overlay for Pop-Up Trigger Card */
+        .card-hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .more-also-frame:hover .card-hover-overlay {
+            opacity: 1;
+        }
+
+        .card-hover-overlay i {
+            font-size: 1.8rem;
+            color: #ffffff;
+            background: #e74c3c;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        /* FIXED POP-UP OVERLAY SYSTEM */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(5, 5, 5, 0.98);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 20px;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .popup-card {
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 16px;
+            max-width: 850px;
+            width: 100%;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            position: relative;
+        }
+        
+        .popup-overlay.active .popup-card {
+            transform: scale(1) translateY(0);
+        }
+        
+        .popup-img-side {
+            width: 100%;
+            height: 550px;
+            background: #000;
+        }
+
+        .popup-img-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .popup-content-side {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .popup-tag {
+            color: #e74c3c;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .popup-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .popup-desc {
+            color: #aaaaaa;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .popup-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.3s;
+            z-index: 10;
+        }
+
+        .popup-close-btn:hover {
+            background: #e74c3c;
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .popup-card {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .popup-img-side {
+                height: 300px;
+            }
+            .popup-content-side {
+                padding: 25px;
+            }
+            .popup-title {
+                font-size: 1.6rem;
+            }
         }
 
         /* Scroll Reveal Animation */
@@ -210,7 +367,7 @@
             transform: translateY(0);
         }
         
-        /* Contact Form */
+        /* Contact Form Configuration */
         .form-section {
             max-width: 600px;
             margin: 40px auto;
@@ -367,47 +524,53 @@
     <div id="more-also" class="section-title reveal-item">More Also</div>
     <section class="more-also-container reveal-item">
         
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Editorial Concept" data-tag="Studio Session" data-desc="A deep, high-contrast look engineered to highlight symmetry, shadows, and crisp fashion angles in a controlled studio environment.">
             <img src="https://i.ibb.co/PZsKKng3/IMG-20260627-WA0012.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Vibrant Portrait" data-tag="Outdoor Location" data-desc="Emphasizing beautiful rich skin tones against a perfectly balanced backdrop, utilizing natural environment lighting configurations.">
             <img src="https://i.ibb.co/7J2MhhD0/IMG-20260627-WA0018-1.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Golden Hour Radiance" data-tag="Natural Light" data-desc="Captured at the exact pivot of dusk to utilize soft golden tones, framing raw and unedited human expression perfectly.">
             <img src="https://i.ibb.co/cXpSC72b/IMG-20260627-WA0006.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Cinematic Narrative" data-tag="Creative Vision" data-desc="Using theatrical framing and unique grading profiles to produce a frame that feels pulled straight from a celluloid motion picture.">
             <img src="https://i.ibb.co/DHk4GKc1/IMG-20260627-WA0019-1.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Minimalist Fine Art" data-tag="Mood Study" data-desc="Stripping away the noise to focus exclusively on clean silhouettes, negative space adjustments, and delicate detail work.">
             <img src="https://i.ibb.co/FqWYnSFM/IMG-20260627-WA0023.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Urban Texture Grid" data-tag="Street Perspective" data-desc="Exploring industrial geometry, architectural backdrops, and raw environment configurations in live urban frameworks.">
             <img src="https://i.ibb.co/SD8JKYZv/IMG-20260627-WA0007.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame modal-trigger">
+        <div class="more-also-frame popup-trigger" data-title="Horizon Framing" data-tag="Scenic Exposure" data-desc="Blending human subjects effortlessly with extensive environmental horizons, creating a timeless open-field atmosphere.">
             <img src="https://i.ibb.co/YF3TSxLG/IMG-20260627-WA0013-1.jpg" alt="Ruby's Lens Element">
+            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
         
     </section>
 
     <div id="contact" class="section-title reveal-item">Let's Create Together</div>
     <section class="form-section reveal-item">
-        <form action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="d8ece040-4026-4c7b-8052-3a89984bd74b">
+        <form action="https://formspree.io/f/xgojyvdv" method="POST">
             <div class="form-group">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" required placeholder="Enter your full name">
             </div>
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                <input type="email" id="email" name="_replyto" required placeholder="Enter your email address">
             </div>
             <div class="form-group">
                 <label for="session">Session Type</label>
@@ -431,6 +594,20 @@
         </div>
     </section>
 
+    <div class="popup-overlay" id="customPopupOverlay">
+        <div class="popup-card">
+            <button class="popup-close-btn" id="customPopupClose"><i class="fas fa-times"></i></button>
+            <div class="popup-img-side">
+                <img src="" id="targetPopupImg" alt="Showcase View">
+            </div>
+            <div class="popup-content-side">
+                <span class="popup-tag" id="targetPopupTag">Project Category</span>
+                <h4 class="popup-title" id="targetPopupTitle">Project Title</h4>
+                <p class="popup-desc" id="targetPopupDesc">Detailed narrative information about this project execution.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="image-modal-overlay" id="galleryModal">
         <div class="modal-container">
             <button class="modal-close-btn" id="modalClose">&times;</button>
@@ -453,7 +630,7 @@
             }, { root: null, rootMargin: "0px 0px -80px 0px", threshold: 0.15 });
             scrollItems.forEach((item) => { revealObserver.observe(item); });
 
-            // Lightbox Modal System for all images
+            // Standard gallery modal lightbox
             const modalOverlay = document.getElementById("galleryModal");
             const modalImg = document.getElementById("modalImg");
             const modalClose = document.getElementById("modalClose");
@@ -469,6 +646,37 @@
             function closeModal() { modalOverlay.classList.remove("active"); document.body.style.overflow = ""; }
             modalClose.addEventListener("click", closeModal);
             modalOverlay.addEventListener("click", function(e) { if(e.target === modalOverlay) closeModal(); });
+
+
+            // SCROLL-RESISTANT POP-UP OVERLAY HANDLING
+            const popupOverlay = document.getElementById("customPopupOverlay");
+            const popupImg = document.getElementById("targetPopupImg");
+            const popupTag = document.getElementById("targetPopupTag");
+            const popupTitle = document.getElementById("targetPopupTitle");
+            const popupDesc = document.getElementById("targetPopupDesc");
+            const popupClose = document.getElementById("customPopupClose");
+
+            document.querySelectorAll(".popup-trigger").forEach(trigger => {
+                trigger.addEventListener("click", function() {
+                    popupImg.src = this.querySelector("img").src;
+                    popupTag.textContent = this.getAttribute("data-tag");
+                    popupTitle.textContent = this.getAttribute("data-title");
+                    popupDesc.textContent = this.getAttribute("data-desc");
+                    
+                    popupOverlay.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            function closePopup() {
+                popupOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            popupClose.addEventListener("click", closePopup);
+            popupOverlay.addEventListener("click", function(e) {
+                if (e.target === popupOverlay) { closePopup(); }
+            });
         });
     </script>
 </body>
