@@ -198,49 +198,21 @@
             display: block;
         }
 
-        /* Hover Overlay for Pop-Up Trigger Card */
-        .card-hover-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .more-also-frame:hover .card-hover-overlay {
-            opacity: 1;
-        }
-
-        .card-hover-overlay i {
-            font-size: 1.8rem;
-            color: #ffffff;
-            background: #e74c3c;
-            padding: 12px;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-        }
-
-        /* FIXED POP-UP OVERLAY SYSTEM */
+        /* FIXED POP-UP OVERLAY SYSTEM (Standard Lightbox Mode) */
         .popup-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(5, 5, 5, 0.98);
+            background: rgba(5, 5, 5, 0.95);
             z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 0.3s ease;
             padding: 20px;
         }
         
@@ -250,108 +222,40 @@
         }
         
         .popup-card {
-            background: #111111;
-            border: 1px solid #222222;
-            border-radius: 16px;
-            max-width: 850px;
-            width: 100%;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            transform: scale(0.9) translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
             position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
         }
         
         .popup-overlay.active .popup-card {
-            transform: scale(1) translateY(0);
+            transform: scale(1);
         }
         
         .popup-img-side {
-            width: 100%;
-            height: 550px;
-            background: #000;
+            max-width: 100%;
+            max-height: 85vh;
         }
 
         .popup-img-side img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 6px;
             display: block;
-        }
-        
-        .popup-content-side {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .popup-tag {
-            color: #e74c3c;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .popup-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .popup-desc {
-            color: #aaaaaa;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
         .popup-close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: none;
+            top: -50px;
+            right: 0;
             color: #ffffff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 2.5rem;
+            background: transparent;
+            border: none;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s, transform 0.3s;
-            z-index: 10;
-        }
-
-        .popup-close-btn:hover {
-            background: #e74c3c;
-            transform: rotate(90deg);
-        }
-
-        @media (max-width: 768px) {
-            .popup-card {
-                grid-template-columns: 1fr;
-                max-height: 90vh;
-                overflow-y: auto;
-            }
-            .popup-img-side {
-                height: 300px;
-            }
-            .popup-content-side {
-                padding: 25px;
-            }
-            .popup-title {
-                font-size: 1.6rem;
-            }
         }
 
         /* Scroll Reveal Animation */
@@ -524,39 +428,32 @@
     <div id="more-also" class="section-title reveal-item">More Also</div>
     <section class="more-also-container reveal-item">
         
-        <div class="more-also-frame popup-trigger" data-title="Editorial Concept" data-tag="Studio Session" data-desc="A deep, high-contrast look engineered to highlight symmetry, shadows, and crisp fashion angles in a controlled studio environment.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/PZsKKng3/IMG-20260627-WA0012.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame popup-trigger" data-title="Vibrant Portrait" data-tag="Outdoor Location" data-desc="Emphasizing beautiful rich skin tones against a perfectly balanced backdrop, utilizing natural environment lighting configurations.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/7J2MhhD0/IMG-20260627-WA0018-1.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame popup-trigger" data-title="Golden Hour Radiance" data-tag="Natural Light" data-desc="Captured at the exact pivot of dusk to utilize soft golden tones, framing raw and unedited human expression perfectly.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/cXpSC72b/IMG-20260627-WA0006.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame popup-trigger" data-title="Cinematic Narrative" data-tag="Creative Vision" data-desc="Using theatrical framing and unique grading profiles to produce a frame that feels pulled straight from a celluloid motion picture.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/DHk4GKc1/IMG-20260627-WA0019-1.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame popup-trigger" data-title="Minimalist Fine Art" data-tag="Mood Study" data-desc="Stripping away the noise to focus exclusively on clean silhouettes, negative space adjustments, and delicate detail work.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/FqWYnSFM/IMG-20260627-WA0023.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame popup-trigger" data-title="Urban Texture Grid" data-tag="Street Perspective" data-desc="Exploring industrial geometry, architectural backdrops, and raw environment configurations in live urban frameworks.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/SD8JKYZv/IMG-20260627-WA0007.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
 
-        <div class="more-also-frame popup-trigger" data-title="Horizon Framing" data-tag="Scenic Exposure" data-desc="Blending human subjects effortlessly with extensive environmental horizons, creating a timeless open-field atmosphere.">
+        <div class="more-also-frame popup-trigger">
             <img src="https://i.ibb.co/YF3TSxLG/IMG-20260627-WA0013-1.jpg" alt="Ruby's Lens Element">
-            <div class="card-hover-overlay"><i class="fas fa-expand"></i></div>
         </div>
         
     </section>
@@ -596,14 +493,9 @@
 
     <div class="popup-overlay" id="customPopupOverlay">
         <div class="popup-card">
-            <button class="popup-close-btn" id="customPopupClose"><i class="fas fa-times"></i></button>
+            <button class="popup-close-btn" id="customPopupClose">&times;</button>
             <div class="popup-img-side">
                 <img src="" id="targetPopupImg" alt="Showcase View">
-            </div>
-            <div class="popup-content-side">
-                <span class="popup-tag" id="targetPopupTag">Project Category</span>
-                <h4 class="popup-title" id="targetPopupTitle">Project Title</h4>
-                <p class="popup-desc" id="targetPopupDesc">Detailed narrative information about this project execution.</p>
             </div>
         </div>
     </div>
@@ -648,21 +540,14 @@
             modalOverlay.addEventListener("click", function(e) { if(e.target === modalOverlay) closeModal(); });
 
 
-            // SCROLL-RESISTANT POP-UP OVERLAY HANDLING
+            // CLEAN LIGHTBOX OVERLAY HANDLING FOR MORE ALSO SECTION
             const popupOverlay = document.getElementById("customPopupOverlay");
             const popupImg = document.getElementById("targetPopupImg");
-            const popupTag = document.getElementById("targetPopupTag");
-            const popupTitle = document.getElementById("targetPopupTitle");
-            const popupDesc = document.getElementById("targetPopupDesc");
             const popupClose = document.getElementById("customPopupClose");
 
             document.querySelectorAll(".popup-trigger").forEach(trigger => {
                 trigger.addEventListener("click", function() {
                     popupImg.src = this.querySelector("img").src;
-                    popupTag.textContent = this.getAttribute("data-tag");
-                    popupTitle.textContent = this.getAttribute("data-title");
-                    popupDesc.textContent = this.getAttribute("data-desc");
-                    
                     popupOverlay.classList.add("active");
                     document.body.style.overflow = "hidden";
                 });
