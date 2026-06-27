@@ -148,111 +148,54 @@
             filter: brightness(0.85);
         }
 
-        /* NEW: "More Also" Premium Gallery & Showcase Grid Layout */
-        .showcase-grid {
+        /* Continuous Horizontal Scroll Container for More Also */
+        .more-also-container {
             max-width: 1100px;
-            margin: 0 auto 60px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px 15px 20px;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
         
-        .showcase-item {
-            position: relative;
+        .more-also-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .more-also-container::-webkit-scrollbar-track {
+            background: #121212;
+            border-radius: 10px;
+        }
+        .more-also-container::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+        .more-also-container::-webkit-scrollbar-thumb:hover {
+            background: #e74c3c;
+        }
+        
+        .more-also-frame {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid #1a1a1a;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
         }
         
-        /* Asymmetric Layout Row Formats */
-        .showcase-item.size-wide  { grid-column: span 4; }
-        .showcase-item.size-tall  { grid-column: span 2; grid-row: span 2; }
-        .showcase-item.size-norm  { grid-column: span 2; }
-        .showcase-item.size-block { grid-column: span 3; }
-
-        .showcase-item img {
+        .more-also-frame:hover {
+            transform: translateY(-5px);
+        }
+        
+        .more-also-frame img {
             width: 100%;
-            height: 100%;
-            min-height: 280px;
-            max-height: 600px;
+            height: 380px;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        
-        /* Dark Hover Tint overlay effect */
-        .showcase-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%);
-            display: flex;
-            align-items: flex-end;
-            padding: 25px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .showcase-info {
-            transform: translateY(15px);
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        
-        .showcase-info h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-        
-        .showcase-info p {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #e74c3c;
-            font-weight: 600;
-        }
-        
-        /* Interactive State Actions */
-        .showcase-item:hover img {
-            transform: scale(1.06);
-        }
-        
-        .showcase-item:hover .showcase-overlay {
-            opacity: 1;
-        }
-        
-        .showcase-item:hover .showcase-info {
-            transform: translateY(0);
-        }
-
-        /* Mobile Breakpoint Overrides for Showcase Layout */
-        @media (max-width: 768px) {
-            .showcase-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            .showcase-item.size-wide,
-            .showcase-item.size-tall,
-            .showcase-item.size-norm,
-            .showcase-item.size-block {
-                grid-column: span 2;
-                grid-row: auto;
-            }
-            .showcase-item img {
-                height: 320px;
-            }
-            .showcase-overlay {
-                opacity: 1; /* Keep captions visible on mobile devices */
-            }
-            .showcase-info {
-                transform: translateY(0);
-            }
         }
 
         /* Continuous Layout Reveal System Settings */
@@ -486,76 +429,34 @@
     </section>
 
     <div id="more-also" class="section-title reveal-item">More Also</div>
-    <section class="showcase-grid reveal-item">
+    <section class="more-also-container reveal-item">
         
-        <div class="showcase-item size-wide modal-trigger">
-            <img src="https://i.ibb.co/PZsKKng3/IMG-20260627-WA0012.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Editorial Concept</h4>
-                    <p>Studio Selection</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/PZsKKng3/IMG-20260627-WA0012.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
 
-        <div class="showcase-item size-tall modal-trigger">
-            <img src="https://i.ibb.co/7J2MhhD0/IMG-20260627-WA0018-1.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Vibrant Portrait</h4>
-                    <p>Outdoor Location</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/7J2MhhD0/IMG-20260627-WA0018-1.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
 
-        <div class="showcase-item size-norm modal-trigger">
-            <img src="https://i.ibb.co/cXpSC72b/IMG-20260627-WA0006.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Golden Hour</h4>
-                    <p>Natural Light</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/cXpSC72b/IMG-20260627-WA0006.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
 
-        <div class="showcase-item size-norm modal-trigger">
-            <img src="https://i.ibb.co/DHk4GKc1/IMG-20260627-WA0019-1.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Cinematic Tone</h4>
-                    <p>Creative Composition</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/DHk4GKc1/IMG-20260627-WA0019-1.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
 
-        <div class="showcase-item size-block modal-trigger">
-            <img src="https://i.ibb.co/FqWYnSFM/IMG-20260627-WA0023.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Minimal Mood</h4>
-                    <p>Fine Art Study</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/FqWYnSFM/IMG-20260627-WA0023.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
 
-        <div class="showcase-item size-block modal-trigger">
-            <img src="https://i.ibb.co/SD8JKYZv/IMG-20260627-WA0007.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Urban Texture</h4>
-                    <p>Street Perspective</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/SD8JKYZv/IMG-20260627-WA0007.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
 
-        <div class="showcase-item size-wide modal-trigger">
-            <img src="https://i.ibb.co/YF3TSxLG/IMG-20260627-WA0013-1.jpg" alt="Ruby's Lens Spotlight">
-            <div class="showcase-overlay">
-                <div class="showcase-info">
-                    <h4>Horizon Frame</h4>
-                    <p>Scenic Exposure</p>
-                </div>
-            </div>
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/YF3TSxLG/IMG-20260627-WA0013-1.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
         
     </section>
