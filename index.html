@@ -148,18 +148,18 @@
             filter: brightness(0.85);
         }
 
-        /* Forced Strict Horizontal Flex Container for More Also */
+        /* Strict Horizontal Flex Layout for More Also */
         .more-also-container {
             max-width: 1100px;
             margin: 0 auto 50px auto;
             padding: 0 20px;
             display: flex;
-            flex-direction: row; /* Enforces horizontal arrangement side-by-side */
+            flex-direction: row;
             gap: 15px;
         }
         
         .more-also-frame {
-            flex: 1; /* Makes both images take up equal width space */
+            flex: 1;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid #1a1a1a;
@@ -174,7 +174,7 @@
         
         .more-also-frame img {
             width: 100%;
-            height: 300px; /* Slightly reduced height so they fit comfortably side-by-side */
+            height: 300px;
             object-fit: cover;
             display: block;
         }
@@ -419,13 +419,16 @@
         <div class="more-also-frame modal-trigger">
             <img src="https://i.ibb.co/7J2MhhD0/IMG-20260627-WA0018-1.jpg" alt="Ruby's Lens Spotlight Element">
         </div>
+
+        <div class="more-also-frame modal-trigger">
+            <img src="https://i.ibb.co/cXpSC72b/IMG-20260627-WA0006.jpg" alt="Ruby's Lens Spotlight Element">
+        </div>
         
     </section>
 
     <div id="contact" class="section-title reveal-item">Let's Create Together</div>
     <section class="form-section reveal-item">
         <form action="https://api.web3forms.com/submit" method="POST">
-        
             <input type="hidden" name="access_key" value="d8ece040-4026-4c7b-8052-3a89984bd74b">
             
             <div class="form-group">
@@ -439,10 +442,6 @@
             <div class="form-group">
                 <label for="session">Session Type</label>
                 <input type="text" id="session" name="session" required placeholder="e.g., Outdoor Session, General Portrait, Video Production">
-            </div>
-            <div class="form-group">
-                <label for="message">Project Brief</label>
-                <textarea id="message" name="message" required placeholder="Tell us about your creative concept details..."></textarea>
             </div>
             <div class="form-group">
                 <label for="message">Project Brief</label>
