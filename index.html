@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby's Lens | Photography & Videography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 20px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo-image {
+            max-height: 85px;
+            width: auto;
+            display: inline-block;
+            margin: 0 auto;
+        }
+        
+        .nav-links {
+            margin-top: 15px;
+        }
+        
+        .nav-links a {
+            margin: 0 12px;
+            text-decoration: none;
+            color: #aaaaaa;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+        
+        /* Hero / Home Gallery Banner */
+        .hero-container {
+            max-width: 1100px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .hero-banner {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        /* Section Framework */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 60px 0 30px 0;
+            color: #ffffff;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: #e74c3c;
+            margin: 12px auto 0 auto;
+        }
+        
+        /* About Section */
+        .about-section {
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            padding: 0 25px;
+            text-align: center;
+            color: #cccccc;
+            font-size: 1.05rem;
+        }
+        
+        .about-section p {
+            margin-bottom: 15px;
+        }
+        
+        /* Interactive Portfolio/Works Grid */
+        .portfolio-grid {
+            max-width: 1100px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .work-card {
+            background: #121212;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .work-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .work-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+        
+        .work-card:hover img {
+            filter: brightness(0.85);
+        }
+        
+        .work-card-meta {
+            padding: 20px;
+            background: #121212;
+            text-align: left;
+        }
+        
+        .card-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #e74c3c;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Scroll Reveal Engine Configuration */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform, opacity;
+        }
+        
+        .reveal-item.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Contact Block */
+        .form-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px 25px;
+            background: #121212;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #222222;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: #c0392b;
+        }
+        
+        /* Action Matrix Contact Cards */
+        .contact-box {
+            background-color: #121212;
+            color: #ffffff;
+            padding: 45px 20px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 4px solid #e74c3c;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .btn-call { background-color: #2c3e50; }
+        .btn-whatsapp { background-color: #27ae60; }
+        .btn-email { background-color: #2980b9; }
+        
+        /* Native Full-Screen Lightbox */
+        .image-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        
+        .image-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+        
+        .modal-container img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        
+        .modal-close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #ffffff;
+            font-size: 2.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            color: #555555;
+            border-top: 1px solid #1a1a1a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#home">
+            <img src="https://i.ibb.co/VYLk1hp7/ei-1782517518618-removebg-preview-1.png" alt="Ruby's Lens Logo" class="logo-image">
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#works">Portfolio</a>
+            <a href="#contact">Book Session</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero-container reveal-item">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200&auto=format&fit=crop" class="hero-banner" alt="Featured Work">
+    </section>
+
+    <div id="about" class="section-title reveal-item">The Vision</div>
+    <section class="about-section reveal-item">
+        <p>Welcome to Ruby's Lens. We specialize in general photography, high-definition videography, and immersive outdoor location shoots.</p>
+        <p>Our philosophy is simple: capture raw, authentic human emotions alongside the striking beauty of natural landscapes. By mixing meticulous framing with clean, minimal processing, we craft timeless memories that speak for themselves.</p>
+    </section>
+
+    <div id="works" class="section-title reveal-item">Selected Photographs</div>
+    <section class="portfolio-grid">
+        
+        <div class="work-card reveal-item modal-trigger">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop" alt="Portrait Portfolio">
+            <div class="work-card-meta">
+                <div class="card-category">General / Portrait</div>
+                <div class="card-title">Studio Essence Studio Series</div>
+            </div>
+        </div>
+        
+        <div class="work-card reveal-item modal-trigger">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop" alt="Outdoor Scenery">
+            <div class="work-card-meta">
+                <div class="card-category">Outdoor / Landscape</div>
+                <div class="card-title">Chasing Golden Horizon Light</div>
+            </div>
+        </div>
+        
+        <div class="work-card reveal-item modal-trigger">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop" alt="Event Production">
+            <div class="work-card-meta">
+                <div class="card-category">Videography / Event</div>
+                <div class="card-title">Motion Capture Live Narrative</div>
+            </div>
+        </div>
+        
+    </section>
+
+    <div id="contact" class="section-title reveal-item">Let's Create Together</div>
+    
+    <section class="form-section reveal-item">
+        <form action="https://formspree.io/f/your_formspree_id_here" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="session">Session Type</label>
+                <input type="text" id="session" name="session" required placeholder="e.g., Outdoor Session, General Portrait, Video Production">
+            </div>
+            <div class="form-group">
+                <label for="message">Project Brief</label>
+                <textarea id="message" name="message" required placeholder="Tell us about your creative concept details..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Inquiry</button>
+        </form>
+    </section>
+
+    <section style="padding: 0 20px;" class="reveal-item">
+        <div class="contact-box">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px;">Direct Bookings</h3>
+            <p style="color: #888888; font-size: 0.9rem; margin-bottom: 25px;">Need an immediate quote? Connect with us instantly below.</p>
+            
+            <a href="tel:+2348039926837" class="btn btn-call"><i class="fas fa-phone"></i> Call Studio</a>
+            <a href="https://wa.me/2348039926837" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+            <a href="mailto:rubyojeba@gmail.com" class="btn btn-email"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+    </section>
+
+    <div class="image-modal-overlay" id="galleryModal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="modalClose">&times;</button>
+            <img src="" id="modalImg" alt="Enlarged gallery view">
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Ruby's Lens. All Rights Reserved.
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const scrollItems = document.querySelectorAll(".reveal-item");
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px 0px -50px 0px",
+                threshold: 0.1
+            };
+
+            const revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("reveal");
+                    }
+                });
+            }, observerOptions);
+
+            scrollItems.forEach((item) => {
+                revealObserver.observe(item);
+            });
+
+            const modalOverlay = document.getElementById("galleryModal");
+            const modalImg = document.getElementById("modalImg");
+            const modalClose = document.getElementById("modalClose");
+            const triggers = document.querySelectorAll(".modal-trigger");
+
+            triggers.forEach(trigger => {
+                trigger.addEventListener("click", function() {
+                    const imgSource = this.querySelector("img").src;
+                    modalImg.src = imgSource;
+                    modalOverlay.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            function closeModal() {
+                modalOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                setTimeout(() => { modalImg.src = ""; }, 300);
+            }
+
+            modalClose.addEventListener("click", closeModal);
+            modalOverlay.addEventListener("click", function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
